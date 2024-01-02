@@ -4,6 +4,7 @@ from datetime import timedelta
 import logging
 
 import duolingo
+import inspect
 import requests
 import voluptuous as vol
 
@@ -18,6 +19,11 @@ from .const import (
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+source = inspect.getsource(duolingo)
+new_source = source.replace('jwt=None', 'jwt')
+new_source = new_source.replace('self.jwt = None', ' ')
+exec(new_source, duolingo.__dict__)
 
 ATTR_DUO_STREAK_LENGTH = "streak_length"
 ATTR_DUO_STREAK_EXTENDED_TODAY = "streak_extended_today"

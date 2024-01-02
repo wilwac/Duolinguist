@@ -1,15 +1,21 @@
 """Adds config flow for Duolinguist."""
 import duolingo
+import inspect
 from homeassistant import config_entries
 from homeassistant.core import callback
 import voluptuous as vol
 
 from .api import DuolingoApiClient
 from .const import (
-    CONF_JWT,
+    CONF_PASSWORD,
     CONF_USERNAME,
     DOMAIN,
 )
+
+source = inspect.getsource(duolingo)
+new_source = source.replace('jwt=None', 'jwt')
+new_source = new_source.replace('self.jwt = None', ' ')
+exec(new_source, duolingo.__dict__)
 
 
 class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -28,7 +34,7 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             valid = await self._test_credentials(
-                user_input[CONF_USERNAME], user_input[CONF_JWT]
+                user_input[CONF_USERNAME], user_input[CONF_PASSWORD]
             )
             if valid:
                 return self.async_create_entry(
@@ -42,7 +48,7 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         user_input = {}
         # Provide defaults for form
         user_input[CONF_USERNAME] = ""
-        user_input[CONF_JWT] = ""
+        user_input[CONF_PASSWORD] = ""
 
         return await self._show_config_form(user_input)
 
@@ -53,7 +59,7 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_USERNAME, default=user_input[CONF_USERNAME]): str,
-                    vol.Required(CONF_JWT, default=user_input[CONF_JWT]): str,
+                    vol.Required(CONF_PASSWORD, default=user_input[CONF_PASSWORD]): str,
                 }
             ),
             errors=self._errors,

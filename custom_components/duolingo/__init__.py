@@ -6,7 +6,7 @@ from custom_components.duolingo.api import DuolingoApiClient
 
 from .const import (
     CONF_USERNAME,
-    CONF_JWT,
+    CONF_PASSWORD,
     DOMAIN,
     PLATFORMS,
     STARTUP_MESSAGE,
@@ -33,7 +33,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         _LOGGER.info(STARTUP_MESSAGE)
 
     username = entry.data.get(CONF_USERNAME)
-    jwt = entry.data.get(CONF_JWT)
+    jwt = entry.data.get(CONF_PASSWORD)
 
     client = DuolingoApiClient(username, jwt)
 

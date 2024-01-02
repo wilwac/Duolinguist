@@ -12,7 +12,7 @@ PLATFORMS = [BINARY_SENSOR]
 
 # Configuration and options
 CONF_USERNAME = "username"
-CONF_JWT = "jwt"
+CONF_PASSWORD = "jwt"
 
 STARTUP_MESSAGE = f"""
 -------------------------------------------------------------------

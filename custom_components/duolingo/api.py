@@ -4,10 +4,16 @@ import asyncio
 import socket
 from typing import Optional
 import duolingo
+import inspect
 
 TIMEOUT = 10
 
 _LOGGER: logging.Logger = logging.getLogger(__package__)
+
+source = inspect.getsource(duolingo)
+new_source = source.replace('jwt=None', 'jwt')
+new_source = new_source.replace('self.jwt = None', ' ')
+exec(new_source, duolingo.__dict__)
 
 
 class DuolingoApiClient:

@@ -10,6 +10,6 @@
     "@wilwac"
   ],
   "requirements": [
-    "duolingo-api@git+https://github.com/GiulianoCTRL/Duolingo"
+    "duolingo-api"
   ]
 }

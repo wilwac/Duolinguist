@@ -4,7 +4,7 @@
             "user": {
                 "data": {
                     "username": "Username",
-                    "jwt": "JWT"
+                    "password": "JWT"
                 },
                 "description": "Please enter your Duolingo username and token (JWT):"
             }
