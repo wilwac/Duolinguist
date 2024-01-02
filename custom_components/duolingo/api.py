@@ -11,15 +11,15 @@ _LOGGER: logging.Logger = logging.getLogger(__package__)
 
 
 class DuolingoApiClient:
-    def __init__(self, username: str, password: str) -> None:
+    def __init__(self, username: str, jwt_token: str) -> None:
         """Duolingo API Client."""
         self._username = username
-        self._password = password
+        self._jwt_token = jwt_token
 
     def get_streak_data(self) -> dict:
         """Get data from the API."""
 
-        return duolingo.Duolingo(self._username, self._password).get_streak_info()
+        return duolingo.Duolingo(self._username, jwt=self._jwt_token).get_streak_info()
 
     # async def api_wrapper(
     #     self, method: str, url: str, data: dict = {}, headers: dict = {}

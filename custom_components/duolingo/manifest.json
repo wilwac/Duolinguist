@@ -1,15 +1,15 @@
 {
   "domain": "duolingo",
   "name": "Duolinguist",
-  "documentation": "https://github.com/sphanley/duolinguist",
+  "documentation": "https://github.com/wilwac/duolinguist",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/sphanley/duolinguist/issues",
-  "version": "0.1.0",
+  "issue_tracker": "https://github.com/wilwac/duolinguist/issues",
+  "version": "0.1.1",
   "config_flow": true,
   "codeowners": [
-    "@sphanley"
+    "@wilwac"
   ],
   "requirements": [
-    "duolingo-api==0.5.2"
+    "duolingo-api@git+https://github.com/GiulianoCTRL/Duolingo"
   ]
 }

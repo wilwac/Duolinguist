@@ -4,9 +4,9 @@
             "user": {
                 "data": {
                     "username": "Username",
-                    "password": "Password"
+                    "jwt": "JWT"
                 },
-                "description": "Please enter your Duolingo username and password:"
+                "description": "Please enter your Duolingo username and token (JWT):"
             }
         }
     },

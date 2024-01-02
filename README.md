@@ -20,15 +20,22 @@ _Component to integrate with a Duolingo account, providing the status of your da
 
 This integration utilizes the UI configuration flow, and no YAML configuration is needed!
 
+You will need to input your JWT (JSON Web Token).
+Generate it by logging in to duolingo.com and use your browser to open the console and input the following:
+`document.cookie.match(new RegExp('(^| )jwt_token=([^;]+)'))[0].slice(11);`
+as per the [instructions here](https://github.com/KartikTalwar/Duolingo/issues/128).
+
 ## Contributions are welcome!
 
 If you want to contribute to this please read the [Contribution guidelines](CONTRIBUTING.md)
 
+This repo is a fork from duolinguist repo from [Sam Hanley](https://github.com/sphanley) which has been archived.
+
 ***
 
-[integration_blueprint]: https://github.com/sphanley/duolinguist
-[commits-shield]: https://img.shields.io/github/commit-activity/y/sphanley/duolinguist.svg?style=for-the-badge
-[commits]: https://github.com/sphanley/duolinguist/commits/master
-[license-shield]: https://img.shields.io/github/license/sphanley/duolinguist.svg?style=for-the-badge
-[releases-shield]: https://img.shields.io/github/release/sphanley/duolinguist.svg?style=for-the-badge
-[releases]: https://github.com/sphanley/duolinguist/releases
+[integration_blueprint]: https://github.com/wilwac/duolinguist
+[commits-shield]: https://img.shields.io/github/commit-activity/y/wilwac/duolinguist.svg?style=for-the-badge
+[commits]: https://github.com/wilwac/duolinguist/commits/master
+[license-shield]: https://img.shields.io/github/license/wilwac/duolinguist.svg?style=for-the-badge
+[releases-shield]: https://img.shields.io/github/release/wilwac/duolinguist.svg?style=for-the-badge
+[releases]: https://github.com/wilwac/duolinguist/releases

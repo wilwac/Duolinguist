@@ -6,7 +6,7 @@ import voluptuous as vol
 
 from .api import DuolingoApiClient
 from .const import (
-    CONF_PASSWORD,
+    CONF_JWT,
     CONF_USERNAME,
     DOMAIN,
 )
@@ -28,7 +28,7 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             valid = await self._test_credentials(
-                user_input[CONF_USERNAME], user_input[CONF_PASSWORD]
+                user_input[CONF_USERNAME], user_input[CONF_JWT]
             )
             if valid:
                 return self.async_create_entry(
@@ -42,7 +42,7 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         user_input = {}
         # Provide defaults for form
         user_input[CONF_USERNAME] = ""
-        user_input[CONF_PASSWORD] = ""
+        user_input[CONF_JWT] = ""
 
         return await self._show_config_form(user_input)
 
@@ -53,16 +53,16 @@ class DuolinguistFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_USERNAME, default=user_input[CONF_USERNAME]): str,
-                    vol.Required(CONF_PASSWORD, default=user_input[CONF_PASSWORD]): str,
+                    vol.Required(CONF_JWT, default=user_input[CONF_JWT]): str,
                 }
             ),
             errors=self._errors,
         )
 
-    async def _test_credentials(self, username, password):
+    async def _test_credentials(self, username, jwt_token):
         """Return true if credentials is valid."""
         try:
-            client = DuolingoApiClient(username, password)
+            client = DuolingoApiClient(username, jwt_token)
             await self.hass.async_add_executor_job(
                 client.get_streak_data,
             )
